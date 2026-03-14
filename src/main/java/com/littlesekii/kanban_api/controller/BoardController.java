@@ -1,0 +1,34 @@
+package com.littlesekii.kanban_api.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.littlesekii.kanban_api.dto.board.BoardResponse;
+import com.littlesekii.kanban_api.service.BoardService;
+
+
+@RestController
+@RequestMapping("/api/boards")
+public class BoardController {
+
+    private final BoardService service;
+
+    public BoardController(BoardService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BoardResponse>> findAll() {
+
+        List<BoardResponse> res = service.findAll().stream()
+            .map(BoardResponse::fromEntity)
+            .toList();
+
+        return ResponseEntity.ok().body(res);
+    }
+    
+}
