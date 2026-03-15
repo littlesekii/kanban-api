@@ -20,4 +20,8 @@ public class BoardService {
         return repository.findAll();
     }
 
+    public Board findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Resource not found"));
+    }
+
 }

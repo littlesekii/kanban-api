@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.littlesekii.kanban_api.dto.board.BoardResponse;
 import com.littlesekii.kanban_api.service.BoardService;
+
 
 
 @RestController
@@ -30,5 +32,14 @@ public class BoardController {
 
         return ResponseEntity.ok().body(res);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BoardResponse> findById(@PathVariable Long id) {
+
+        BoardResponse res = BoardResponse.fromEntity(service.findById(id));
+
+        return ResponseEntity.ok().body(res);
+    }
+    
     
 }
