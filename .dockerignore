@@ -1,0 +1,7 @@
+target/
+.git/
+database/
+*.db
+.mvn/
+mvnw
+mvnw.cmd
