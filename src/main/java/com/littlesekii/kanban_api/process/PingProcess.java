@@ -37,6 +37,6 @@ public class PingProcess implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        new Thread(ping).run();
+        new Thread(ping).start();
     }
 }
