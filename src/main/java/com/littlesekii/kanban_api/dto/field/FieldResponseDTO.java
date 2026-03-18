@@ -2,24 +2,24 @@ package com.littlesekii.kanban_api.dto.field;
 
 import java.util.List;
 
-import com.littlesekii.kanban_api.dto.card.CardResponse;
+import com.littlesekii.kanban_api.dto.card.CardResponseDTO;
 import com.littlesekii.kanban_api.model.Field;
 
 // @JsonPropertyOrder({ "id", "title", "order", "cards" })
-public record FieldResponse(
+public record FieldResponseDTO(
     Long id, 
     String title, 
     Integer order, 
-    List<CardResponse> cards
+    List<CardResponseDTO> cards
 ) {
 
-    public static FieldResponse fromEntity(Field field) {
-        return new FieldResponse(
+    public static FieldResponseDTO fromEntity(Field field) {
+        return new FieldResponseDTO(
             field.getId(), 
             field.getTitle(), 
             field.getSortOrder(), 
             field.getCards().stream()
-                .map(CardResponse::fromEntity)
+                .map(CardResponseDTO::fromEntity)
                 .toList()
         );
     }

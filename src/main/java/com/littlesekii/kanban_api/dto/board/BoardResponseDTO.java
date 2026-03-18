@@ -2,22 +2,22 @@ package com.littlesekii.kanban_api.dto.board;
 
 import java.util.List;
 
-import com.littlesekii.kanban_api.dto.field.FieldResponse;
+import com.littlesekii.kanban_api.dto.field.FieldResponseDTO;
 import com.littlesekii.kanban_api.model.Board;
 
 // @JsonPropertyOrder({ "id", "title", "fields" })
-public record BoardResponse(
+public record BoardResponseDTO(
     Long id, 
     String title, 
-    List<FieldResponse> fields
+    List<FieldResponseDTO> fields
 ) {
 
-    public static BoardResponse fromEntity(Board board) {
-        return new BoardResponse(
+    public static BoardResponseDTO fromEntity(Board board) {
+        return new BoardResponseDTO(
             board.getId(), 
             board.getTitle(), 
             board.getFields().stream()
-                .map(FieldResponse::fromEntity)
+                .map(FieldResponseDTO::fromEntity)
                 .toList()
         );
     }

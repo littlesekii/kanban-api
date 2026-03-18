@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.littlesekii.kanban_api.model.Board;
-import com.littlesekii.kanban_api.resource.IBoardRepository;
+import com.littlesekii.kanban_api.dto.board.BoardResponseDTO;
+import com.littlesekii.kanban_api.repository.IBoardRepository;
 
 @Service
 public class BoardService {
@@ -16,12 +16,18 @@ public class BoardService {
         this.repository = repository;
     }
 
-    public List<Board> findAll() {
-        return repository.findAll();
+    public List<BoardResponseDTO> findAll() {
+        return repository.findAll().stream()
+            .map(BoardResponseDTO::fromEntity)
+            .toList();
     }
 
-    public Board findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Resource not found"));
+    public BoardResponseDTO findById(Long id) {
+        return BoardResponseDTO.fromEntity(
+            repository.findById(id).orElseThrow(
+                () -> new RuntimeException("Resource not found")
+            )
+        );
     }
 
 }

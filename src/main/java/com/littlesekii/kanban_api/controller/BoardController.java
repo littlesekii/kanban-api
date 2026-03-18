@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.littlesekii.kanban_api.dto.board.BoardResponse;
+import com.littlesekii.kanban_api.dto.board.BoardResponseDTO;
 import com.littlesekii.kanban_api.service.BoardService;
 
 
@@ -24,20 +24,14 @@ public class BoardController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BoardResponse>> findAll() {
-
-        List<BoardResponse> res = service.findAll().stream()
-            .map(BoardResponse::fromEntity)
-            .toList();
-
+    public ResponseEntity<List<BoardResponseDTO>> findAll() {
+        List<BoardResponseDTO> res = service.findAll();
         return ResponseEntity.ok().body(res);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BoardResponse> findById(@PathVariable Long id) {
-
-        BoardResponse res = BoardResponse.fromEntity(service.findById(id));
-
+    public ResponseEntity<BoardResponseDTO> findById(@PathVariable Long id) {
+        BoardResponseDTO res = service.findById(id);
         return ResponseEntity.ok().body(res);
     }
     
