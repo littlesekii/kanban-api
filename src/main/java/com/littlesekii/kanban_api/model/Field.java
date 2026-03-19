@@ -51,6 +51,12 @@ public class Field {
         return cards;
     }
 
+    public void updateTitle(String title) {
+        if (title == null || title.isBlank())
+            throw new IllegalArgumentException("Title cannot be blank");
+        this.title = title;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
