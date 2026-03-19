@@ -38,6 +38,14 @@ public class Card {
     public Integer getSortOrder() {
         return sortOrder;
     }
+
+    public void updateField(Field field) {
+        this.field = field;
+    }
+
+    public void updateSortOrder(Integer sortOrder) {
+        this.sortOrder = sortOrder;
+    }
     
     @Override
     public int hashCode() {
