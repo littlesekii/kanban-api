@@ -58,6 +58,9 @@ public class Field {
             throw new IllegalArgumentException("Title cannot be blank");
         this.title = title;
     }
+    public void updateSortOrder(Integer sortOrder) {
+        this.sortOrder = sortOrder;
+    }
 
     @Override
     public int hashCode() {
